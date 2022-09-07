@@ -33,3 +33,12 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _print_dstack(stack_t **stack);
+void _pint(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _swap(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+stack_t _add(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+
+
+#endif /* MONTY_H */
