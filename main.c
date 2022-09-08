@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 
 		if (byt_read > 0){
 			/*TODO: function to tokenizer aand pas to variadic for the opcode instructions */
-			print("%s\n", str[1]);
+			print("%s\n", op_args[1]);
 		}
 		free(op_args);
 	}
