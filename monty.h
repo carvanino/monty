@@ -3,6 +3,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -34,6 +39,20 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct var_t - defines the struct to save the file $ content
+ * @file: a pointer to monty file 
+ * @content: defines the content from command line arguments
+ * Description: carries the values of the program
+ */
+
+typedef struct var_t 
+{
+	FILE *file;
+	char *content;
+}
+
+void _free_stack(stack_t *stack);
 void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _print_dstack(stack_t **stack);
 void _pint(stack_t **stack, __attribute__((unused)) unsigned int line_number);
