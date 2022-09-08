@@ -58,6 +58,6 @@ void _print_dstack(stack_t **stack);
 void _pint(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _swap(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 stack_t _add(stack_t **stack, __attribute__((unused)) unsigned int line_number);
-int stack_op(char *op_args, stack_t *stack, unsigned int line_number);
+int stack_op(char *op_args, stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
