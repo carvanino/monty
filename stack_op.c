@@ -73,6 +73,34 @@ void _pint(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 }
 
 /**
+ * _pop - removes the top element on a stack
+ *
+ * @stack: pointer to the start of the stack
+ * @line_number: Line number
+ *
+ */
+
+void _pop(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *transv;
+
+	if (*stack == NULL)
+	{
+		fprintf(2, "L<line_number>: can't pint, stack empty\n");
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
+	{
+		free(*stack);
+	}
+	transv = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	transv->next = NULL;
+	free(transv);
+}
+
+/**
  * _swap - swaps the top two element in the stack
  *
  * @stack: pointe to the start of the stack
@@ -115,4 +143,15 @@ stackt_t _add(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	return((*stack)->next->n);
 }
 
+/**
+ * _nod - Does nothing
+ *
+ * @stack: pointer to the start of the stack
+ * @line_number: Line number
+ *
+ */
 
+void _nod(stack_t **stack, --attribute__((unused)) unsigned int line_number)
+{
+	void(stack);
+}
