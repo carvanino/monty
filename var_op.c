@@ -32,6 +32,7 @@ int call_stack_op(char* op_args, stack_t **head, unsigned int counter)
 		if(strcmp(token[0], get_op[x].opcode) == 0)
 		{
 			get_op[x].f(head, counter);
+			/* a call to the respective stack operation function */
 			return 0;
 		}
 		x++;
