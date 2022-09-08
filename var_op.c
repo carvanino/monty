@@ -10,7 +10,7 @@
 
 int stack_op(char* op_args, stack_t **head, unsigned int counter)
 {
-	intstruction_t ops[] = {
+	instruction_t ops[] = {
 		{"push", _push},
 		{"pop", _pop},
 		{"swap", _swap},
