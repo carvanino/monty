@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /*
- * stacK_op - a switch founder for opcode operation
+ * stack_op - a switch founder for opcode operation
  * @head: defines the head of the stack
  * @counter: defines the line counter
  * Return: 0 on sucess else 1 on failure
@@ -26,14 +26,15 @@ int stack_op(char* op_args, stack_t **head, unsigned int counter)
 	while (tok_op && ops[x].opcode )
 	{
 		/*a check to compair if the opcode matches the bytcode instruction opcode*/
-		if(strcmp(tok_op, tok_op.opcode) == 0)
+		if(strcmp(tok_op, ops[x].opcode) == 0)
 		{
+			/* a call to the respective stack operation function */
 			ops[x].f(head, counter);
 			return 0;
 		}
 		x++;
 	}
-	/* check for a scenario where  */
+	/* check for a scenario where the  */
 	if(tok_op && ops[x].opcode = NULL)
 	{
 		free(op_args);
