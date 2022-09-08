@@ -20,9 +20,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -35,22 +35,22 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
  * struct var_t - defines the struct to save the file $ content
- * @file: a pointer to monty file 
+ * @file: a pointer to monty file
  * @content: defines the content from command line arguments
  * Description: carries the values of the program
  */
 
-typedef struct var_t 
+typedef struct var_t
 {
 	FILE *file;
 	char *content;
-}
+} var;
 
 void _free_stack(stack_t *stack);
 void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
