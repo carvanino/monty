@@ -1,4 +1,4 @@
-#include "monty.h";
+#include "monty.h"
 
 /*
  * _free_stack - frees the doubly list struct
@@ -6,14 +6,14 @@
  *
  */
 
-void _free_stack(stack_t *head)
+void _free_stack(stack_t *stack)
 {
-	stack_t temp;
-	temp = head;
-	while(head)
+	stack_t *temp;
+	temp = stack;
+	while(stack)
 	{
-		temp = head->next;
-		free(head);
-		head = temp;
+		temp = stack->next;
+		free(stack);
+		stack = temp;
 	}
 }

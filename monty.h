@@ -9,6 +9,8 @@
 #include <string.h>
 #include <ctype.h>
 
+extern unsigned int line_number;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -54,16 +56,16 @@ typedef struct var_s
 
 void _free_stack(stack_t *stack);
 void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
-void _print_dstack(stack_t **stack);
+void _print_dstack(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _pint(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _pop(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _swap(stack_t **stack, __attribute__((unused)) unsigned int line_number);
-stack_t _add(stack_t **stack, __attribute__((unused)) unsigned int line_number);
-void _nod(stack_t **stack, --attribute__((unused)) unsigned int line_number);
+void _add(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _nod(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 
 
-int stack_op(char *op_args, stack_t *stack, unsigned int line_number);
+void call_stack_op(char **tokens, stack_t **stack);
 int no_toks(char *str, char *delim);
-char **tokenize(char *str, char *delim)
+char **tokenize(char *str, char *delim);
 
 #endif /* MONTY_H */

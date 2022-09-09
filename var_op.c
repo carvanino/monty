@@ -1,14 +1,15 @@
 #include "monty.h"
 
-/*
- * call_stacK_op - call the appropraite stack_op based on the opcode
+/**
+ * call_stack_op - call the apporiate stack_op based on the opcode
+ *
  * @head: defines the head of the stack
- * @counter: defines the line counter
- * Return: 0 on sucess else 1 on failure
+ * @tokens: array of tokens from line read
+ *
  */
 
 
-int call_stack_op(char* op_args, stack_t **head, unsigned int counter)
+void call_stack_op(char **tokens, stack_t **stack)
 {
 	instruction_t get_op[] = {
 		{"push", _push},
@@ -17,33 +18,37 @@ int call_stack_op(char* op_args, stack_t **head, unsigned int counter)
 		{"pint", _pint},
 		{"swap", _swap},
 		{"add", _add},
-		{"_nod", nod},
+		{"nod", _nod},
 		{NULL, NULL}
 	};
 
 	int x = 0;
-	char **token;
 
-	token = tokenize(op_args);
+	/*token = tokenize(op_args);*/
 
-	while (tok_op && get_op[x].opcode)
+	while (*tokens && get_op[x].opcode)
 	{
-		/* check to compair if the opcode matches the bytcode instruction opcode*/
-		if(strcmp(token[0], get_op[x].opcode) == 0)
+		printf("%s\n", tokens[1]);
+		printf("%d\n", line_number);
+		if (strcmp(tokens[0], get_op[x].opcode) == 0)
 		{
-			get_op[x].f(head, counter);
-			/* a call to the respective stack operation function */
-			return 0;
+			printf("%s\n", tokens[1]);
+			get_op[x].f(stack, line_number);
+			printf("%s\n", tokens[0]);
+			break;
 		}
 		x++;
 	}
-	/* check for a scenario where  */
-	if(tok_op && ops[x].opcode = NULL) /* Not sue if this is needed*/
+	if (strcmp(tokens[0], "push") == 0)
 	{
-		free(op_args);
-		_free_stack(*head);
-		fprintf(stderr, "L%d:instruction not found %s\n", counter, tok_op)
+		printf("YES\n");
+		(*stack)->n = atoi(tokens[1]);
+	}
+
+	if (*tokens && get_op[x].opcode == NULL)
+	{
+		_free_stack(*stack);
+		fprintf(stderr, "L%d:instruction not found %s\n", line_number, tokens[0]);
 		exit(EXIT_FAILURE);
 	}
-	return 1;
 }
