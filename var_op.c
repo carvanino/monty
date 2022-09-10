@@ -25,6 +25,7 @@ void call_stack_op(char **tokens, stack_t **stack)
 		{"mod", _mod},
 		{"pchar", _pchar},
 		{"rotl", _rotl},
+		{"pstr", _pstr},
 		{NULL, NULL}
 	};
 

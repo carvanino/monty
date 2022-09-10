@@ -56,3 +56,76 @@ void _rotl(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	(*stack) = temp;
 }
 
+/**
+ * _pchar - prints the top character
+ *
+ * @stack: define the head of the stack
+ * @line_number: the line counter
+ *
+ */
+void _pchar(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *tmp = (*stack);
+
+	if (tmp == NULL)
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	/*check that the character is between the ascii character range*/
+	if (tmp->n > 127 || tmp->n < 0)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+	}
+	printf("%c\n", tmp->n);
+}
+/**
+ * _pstr - prints the string from the top
+ *
+ * @stack: define the head of the stack
+ * @line_number: the line counter
+ *
+ */
+void _pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *tmp = (*stack);
+
+	while (tmp != NULL)
+	{
+		if (tmp->n > 127 || tmp->n <= 0)
+		{
+			break;
+		}
+		printf("%c", tmp->n);
+		tmp = tmp->next;
+	}
+	printf("\n");
+}
+
+/**
+ * _rotr - rotates the stack completely
+ *
+ * @stack: define the head of the stack
+ * @line_number: the line counter
+ *
+ */
+void _rotr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *tmp = (*stack);
+
+	if (tmp == NULL || tmp->next == NULL)
+	{
+		return;
+	}
+
+	while (tmp)
+	{
+		tmp = tmp->next;
+	}
+
+	tmp->next = (*stack);
+	tmp->prev->next = NULL;
+	tmp->prev = NULL;
+	(*stack)->prev = tmp;
+	(*stack) = tmp;
+}
