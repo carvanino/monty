@@ -33,7 +33,7 @@ void call_stack_op(char **tokens, stack_t **stack)
 	{
 		/*printf("%s\n", tokens[1]);*/
 		/*printf("Line number: %d\n", line_number);*/
-		if (tokens[0][0] == "#")
+		if (tokens[0][0] == '#')
 		{
 			return;
 		}
@@ -44,14 +44,14 @@ void call_stack_op(char **tokens, stack_t **stack)
 				/*printf("%s\n", get_op[x].opcode);*/
 				get_op[x].f(stack, line_number);
 			}
-			/*printf("%s\n", tokens[0]);*/
+			printf("%s\n", tokens[0]);
 			break;
 		}
 		/*printf("%s\n", tokens[0]);*/
 		x++;
 	}
 
-	if (*tokens && get_op[x].opcode == NULL)
+	if (get_op[x].opcode == NULL)
 	{
 		_free_stack(*stack);
 		fprintf(stderr, "L%d:instruction not found %s\n", line_number, tokens[0]);

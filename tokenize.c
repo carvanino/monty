@@ -53,7 +53,7 @@ char **tokenize(char *str, char *delim)
 	strcpy(str_cpy, str);
 	/*str_cpy = strdup(str);*/
 	no_token = no_toks(str_cpy, delim);
-	/*printf("%d\n", no_token);*/
+	printf("Number of toks: %d\n", no_token);
 	tokens = malloc(sizeof(char ) * no_token);
 	token  = strtok(str, delim);
 	while (token != NULL)
