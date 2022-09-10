@@ -19,6 +19,7 @@ void call_stack_op(char **tokens, stack_t **stack)
 		{"swap", _swap},
 		{"add", _add},
 		{"nod", _nod},
+		{"sub", _sub},
 		{NULL, NULL}
 	};
 
