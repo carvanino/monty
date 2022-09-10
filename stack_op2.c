@@ -78,3 +78,25 @@ void _div(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	(*stack)->next->n = (*stack)->next->n / (*stack)->n;
 	(*stack) = (*stack)->next;
 }
+
+
+/**
+ * _mul - multiplies the two top element of the stack and
+ * replaces the second top element with the result of the multiplication
+ * and remove the top element
+ *
+ * @stack: pointer to the start of the stack
+ * @line_number: Line number
+ *
+ */
+
+void _mul(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't sub, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	(*stack)->next->n = (*stack)->next->n * (*stack)->n;
+	(*stack) = (*stack)->next;
+}
