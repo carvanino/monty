@@ -23,6 +23,7 @@ void call_stack_op(char **tokens, stack_t **stack)
 		{"div", _div},
 		{"mul", _mul},
 		{"mod", _mod},
+		{"pchar", _pchar},
 		{NULL, NULL}
 	};
 
@@ -31,9 +32,9 @@ void call_stack_op(char **tokens, stack_t **stack)
 
 	while (get_op[x].opcode)
 	{
-		/*printf("%s\n", tokens[1]);*/
+		/*printf("%s\n", tokens[x]);*/
 		/*printf("Line number: %d\n", line_number);*/
-		if (tokens[0][0] == "#")
+		if (tokens[0][0] == '#')
 		{
 			return;
 		}
