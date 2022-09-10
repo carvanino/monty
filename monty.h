@@ -73,6 +73,7 @@ void _div(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _mul(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _mod(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _pchar(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 
 void call_stack_op(char **tokens, stack_t **stack);
 int no_toks(char *str, char *delim);
