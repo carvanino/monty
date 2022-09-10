@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define __GNU_SOURCE
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -8,6 +10,8 @@
 #include <fcntl.h>
 #include <string.h>
 #include <ctype.h>
+
+#define __GNU_SOURCE
 
 extern unsigned int line_number;
 
@@ -52,11 +56,13 @@ typedef struct var_s
 {
 	FILE *file;
 	char *content;
+	char **tokens;
 } var_t;
+
 
 void _free_stack(stack_t *stack);
 void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
-void _print_dstack(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _pint(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _pop(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _swap(stack_t **stack, __attribute__((unused)) unsigned int line_number);

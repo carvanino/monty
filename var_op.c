@@ -13,7 +13,7 @@ void call_stack_op(char **tokens, stack_t **stack)
 {
 	instruction_t get_op[] = {
 		{"push", _push},
-		{"pall", _print_dstack},
+		{"pall", _pall},
 		{"pop", _pop},
 		{"pint", _pint},
 		{"swap", _swap},
@@ -24,25 +24,23 @@ void call_stack_op(char **tokens, stack_t **stack)
 
 	int x = 0;
 
-	/*token = tokenize(op_args);*/
 
-	while (*tokens && get_op[x].opcode)
+	while (get_op[x].opcode)
 	{
-		printf("%s\n", tokens[1]);
-		printf("%d\n", line_number);
+		/*printf("%s\n", tokens[1]);*/
+		/*printf("Line number: %d\n", line_number);*/
 		if (strcmp(tokens[0], get_op[x].opcode) == 0)
 		{
-			printf("%s\n", tokens[1]);
-			get_op[x].f(stack, line_number);
-			printf("%s\n", tokens[0]);
+			if (get_op[x].f)
+			{
+				/*printf("%s\n", get_op[x].opcode);*/
+				get_op[x].f(stack, line_number);
+			}
+			/*printf("%s\n", tokens[0]);*/
 			break;
 		}
+		/*printf("%s\n", tokens[0]);*/
 		x++;
-	}
-	if (strcmp(tokens[0], "push") == 0)
-	{
-		printf("YES\n");
-		(*stack)->n = atoi(tokens[1]);
 	}
 
 	if (*tokens && get_op[x].opcode == NULL)

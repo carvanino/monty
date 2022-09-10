@@ -1,9 +1,11 @@
+#define __GNU_SOURCE
+
 #include "monty.h"
 
-
+var_t var;
 /*intialize the global variable for the program */
 
-var_t var = {NULL, NULL};
+/*var_t var = {NULL, NULL};*/
 unsigned int line_number = 0;
 
 /**
@@ -19,7 +21,6 @@ int main(int argc, char **argv)
 	char *line_read = NULL;
 	FILE *file;
 	char **tokens;
-	int byt_read = 1;
 	size_t size = 0;
 	stack_t *head = NULL; /* defines the head of the pointer */
 
@@ -39,19 +40,18 @@ int main(int argc, char **argv)
 
 	var.file = file;
 
-	while (byt_read > 0)
+	while (getline(&line_read, &size, file) != -1)
 	{
-		byt_read = getline(&line_read, &size, file);
-		if (byt_read > 0)
+		var.content = line_read;/* Want to change this to line_read */
+		line_number++;
+		tokens = tokenize(line_read, " \n\t");
+		var.tokens = tokens;
+		if (tokens != NULL)
 		{
-			var.content = line_read;/* Want to change this to line_read */
-			line_number++;
-			tokens = tokenize(line_read, " /n/t");
-			if (tokens != NULL)
-			{
-				call_stack_op(tokens, &head);
-				free(tokens);
-			}
+			call_stack_op(tokens, &head);
+			/*printf("%s\n", tokens[0]);*/
+			/*printf("HERE\n");*/
+			free(tokens);
 		}
 	}
 	free(line_read);

@@ -1,5 +1,7 @@
 #include "monty.h"
 
+var_t var;
+
 /**
  * _push - adds a node to the top of the list
  *
@@ -12,28 +14,30 @@ void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	stack_t *newnode;
 
 	newnode = malloc(sizeof(stack_t));
-	printf("HERE");
-	if (newnode == NULL || (*stack) == NULL) /* if no argument is given to push */
+	/*printf("HERE\n");*/
+	if (newnode == NULL) /* if no argument is given to push */
 	{
 		fprintf(stderr, "L%d: usage: push op integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	/* TODO: Get line number*/
-	(*stack)->n = line_number;
+	/*printf("HERE21\n");*/
+	/*printf("%d\n", atoi(var.tokens[1]));*/
+	(newnode)->n = atoi(var.tokens[1]);
+	/*printf("HERE2\n");*/
 	newnode->prev = NULL;
 	newnode->next = NULL;
-	if (*stack ==  NULL)
+	if ((*stack) ==  NULL)
 	{
 		*stack = newnode;
 	}
 	else
 	{
-		printf("%d", (*stack)->n);
-		printf("HERE");
+		/*printf("HERE");*/
 		(*stack)->prev = newnode;
 		newnode->next = *stack;
 		newnode->prev = NULL;
 	}
+	*stack = newnode;
 }
 
 /**
@@ -43,16 +47,24 @@ void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
  *
  */
 
-void _print_dstack(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *transv;
 
+
+	if ((*stack) == NULL)
+	{
+		return;
+	}
 	transv = *stack;
 	while (transv != NULL)
 	{
 		fprintf(stdout, "%d\n", transv->n);
+		/*printf("PALL\n");*/
+		/*fprintf(stdout, "%x\n", transv->next);*/
 		transv = transv->next;
 	}
+	/*fprintf(stdout, "%d\n", transv->n);*/
 }
 
 /**
@@ -92,13 +104,16 @@ void _pop(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	}
 	if ((*stack)->next == NULL)
 	{
-		free(*stack);
+		*stack = NULL;
 	}
-	transv = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	transv->next = NULL;
-	free(transv);
+	else
+	{
+		transv = *stack;
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
+		transv->next = NULL;
+		free(transv);
+	}
 }
 
 /**
