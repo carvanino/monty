@@ -3,6 +3,7 @@
 
 /**
  * _pchar - prints the top character
+ *
  * @stack: define the head of the stack
  * @line_number: the line counter
  * Return: void

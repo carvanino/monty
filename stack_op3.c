@@ -24,3 +24,35 @@ void _mod(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	(*stack)->next->n = (*stack)->next->n % (*stack)->n;
 	(*stack) = (*stack)->next;
 }
+
+/**
+ * _rot1 - rototes the the stack to the top but keeps the bottom element of the
+ * stack as the bottom
+ *
+ * @stack - pointer to start of the stack
+ * @line_number: line number
+ *
+ */
+
+void _rotl(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *transv, *temp;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't mod, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	transv = *stack;
+	temp = transv->next;
+	while (transv->next != NULL)
+	{
+		transv = transv->next;
+	}
+	transv->next = *stack;
+	temp->prev = NULL;
+	(*stack)->prev = transv;
+	(*stack)->next = NULL;
+	(*stack) = temp;
+}
+
