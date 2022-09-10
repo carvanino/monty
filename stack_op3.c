@@ -72,3 +72,30 @@ void _pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	}
 	printf("\n");
 }
+
+/**
+ * _rotr - prints the top string
+ * @stack: define the head of the stack
+ * @line_number: the line counter
+ * Return: void
+ */
+void _rotr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *tmp = (*stack);
+
+	if (tmp == NULL || tmp->next == NULL)
+	{
+		return;
+	}
+
+	while (tmp)
+	{
+		tmp = tmp->next;
+	}
+
+	tmp->next = (*stack);
+	tmp->prev->next = NULL;
+	tmp->prev = NULL;
+	(*stack)->prev = tmp;
+	(*stack) = tmp;
+}
