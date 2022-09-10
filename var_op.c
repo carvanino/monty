@@ -33,6 +33,10 @@ void call_stack_op(char **tokens, stack_t **stack)
 	{
 		/*printf("%s\n", tokens[1]);*/
 		/*printf("Line number: %d\n", line_number);*/
+		if (tokens[0][0] == "#")
+		{
+			return;
+		}
 		if (strcmp(tokens[0], get_op[x].opcode) == 0)
 		{
 			if (get_op[x].f)
