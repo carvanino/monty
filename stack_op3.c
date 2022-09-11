@@ -38,10 +38,9 @@ void _rotl(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *transv, *temp;
 
-	if (*stack == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't mod, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
+		return;
 	}
 	transv = *stack;
 	temp = transv->next;
@@ -111,21 +110,20 @@ void _pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
  */
 void _rotr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
-	stack_t *tmp = (*stack);
+	stack_t *transv;
 
-	if (tmp == NULL || tmp->next == NULL)
+	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
 		return;
 	}
-
-	while (tmp)
+	transv = *stack;
+	while (transv->next != NULL)
 	{
-		tmp = tmp->next;
+		transv = transv->next;
 	}
-
-	tmp->next = (*stack);
-	tmp->prev->next = NULL;
-	tmp->prev = NULL;
-	(*stack)->prev = tmp;
-	(*stack) = tmp;
+	transv->next = *stack;
+	transv->prev->next = NULL;
+	transv->prev = NULL;
+	(*stack)->prev = transv;
+	*stack = transv;
 }
